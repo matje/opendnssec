@@ -32,6 +32,7 @@
  */
 
 #include "adapter/adapter.h"
+#include "parser/confparser.h"
 #include "parser/zonelistparser.h"
 #include "shared/file.h"
 #include "shared/log.h"
@@ -69,6 +70,25 @@ parse_zonelist_element(xmlXPathContextPtr xpathCtx, xmlChar* expr)
     str = (const char*) xmlXPathCastToString(xpathObj);
     xmlXPathFreeObject(xpathObj);
     return str;
+}
+
+
+/**
+ * Parse empty expr inside XPath Context.
+ *
+ */
+static int
+parse_zonelist_empty(xmlXPathContextPtr xpathCtx, xmlChar* expr)
+{
+    xmlXPathObjectPtr xpathObj = NULL;
+    ods_log_assert(xpathCtx);
+    ods_log_assert(expr);
+    xpathObj = xmlXPathEvalExpression(expr, xpathCtx);
+    if (xpathObj == NULL) {
+        return 0;
+    }
+    xmlXPathFreeObject(xpathObj);
+    return 1;
 }
 
 
@@ -185,6 +205,7 @@ parse_zonelist_zones(void* zlist, const char* zlfile)
     xmlChar* name_expr = (unsigned char*) "name";
     xmlChar* policy_expr = (unsigned char*) "//Zone/Policy";
     xmlChar* signconf_expr = (unsigned char*) "//Zone/SignerConfiguration";
+    xmlChar* passthrough_expr = (unsigned char*) "//Zone/PassThrough";
 
     if (!zlist || !zlfile) {
         return ODS_STATUS_ASSERT_ERR;
@@ -235,6 +256,8 @@ parse_zonelist_zones(void* zlist, const char* zlfile)
                     policy_expr);
                 new_zone->signconf_filename = parse_zonelist_element(xpathCtx,
                     signconf_expr);
+                new_zone->passthrough = parse_zonelist_empty(xpathCtx,
+                    passthrough_expr);
                 parse_zonelist_adapters(xpathCtx, new_zone);
                 if (!new_zone->policy_name || !new_zone->signconf_filename ||
                     !new_zone->adinbound || !new_zone->adoutbound) {

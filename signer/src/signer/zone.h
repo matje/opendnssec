@@ -78,6 +78,7 @@ struct zone_struct {
     const char* name; /* string format zone name */
     const char* policy_name; /* policy identifier */
     const char* signconf_filename; /* signconf filename */
+    int passthrough; /* passthrough */
     zone_zl_status zl_status; /* zonelist status */
     /* adapters */
     adapter_type* adinbound; /* inbound adapter */
