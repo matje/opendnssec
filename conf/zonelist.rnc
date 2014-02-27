@@ -32,12 +32,8 @@ start = element ZoneList {
 		# Name of zone
 		attribute name { xsd:string },
 
-		# What policy applies to this zone?
-		# (matches symbolic name of policy in in kasp.xml)
-		element Policy { xsd:string },
-
-		# What file containts the signer configuration for this zone?	
-		element SignerConfiguration { xsd:string },
+		# Policy or Passthrough?
+		((policy, signconf) | passthrough),
 
 		element Adapters {
 			# Where do the signer fetch the unsigned zone?
@@ -48,6 +44,16 @@ start = element ZoneList {
 		}
 	}*
 }
+
+# Passing through zones
+passthrough = element PassThrough { empty }
+
+# What policy applies to this zone?
+# (matches symbolic name of policy in in kasp.xml)
+policy = element Policy { xsd:string }
+
+# What file containts the signer configuration for this zone?	
+signconf = element SignerConfiguration { xsd:string }
 
 # adapters
 adapter = adfile | adother
