@@ -1,0 +1,19 @@
+The following commands are supported:
+
+sign:		Evaluate keys:
+		- If no keys:
+			Create keys.
+		- If keys:
+			Check times and update state.
+
+		Re-sign.
+
+roll:		Evaluate keys:
+		- If no keys: 
+			Create keys.
+		- If keys: 
+			Create keys.
+			Check times and update state.
+
+		Re-sign.
+

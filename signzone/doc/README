@@ -1,0 +1,42 @@
+The signzone tool is part of the OpenDNSSEC project.
+For more information, visit http://www.opendnssec.org
+
+CONTENTS:
+    INTRODUCTION
+    DEPENDENCIES
+    INSTALLATION
+    INTERACTION FROM THE COMMAND LINE
+
+-------------------------------------------------------------------
+INTRODUCTION
+-------------------------------------------------------------------
+
+As part of the OpenDNSSEC project, this tool signs zones in
+a {ldns,dnssec}-signzone way.
+
+-------------------------------------------------------------------
+DEPENDENCIES
+-------------------------------------------------------------------
+
+The signzone tool depends on the ldns library:
+
+	 http://www.NLnetLabs.nl/projects/ldns
+
+and can only be used in conjuction with a PKCS#11 library (a software
+version of which, softHSM, is supplied with the OpenDNSSEC).
+
+-------------------------------------------------------------------
+INSTALLATION
+-------------------------------------------------------------------
+
+The signzone tool is installed as part of the OpenDNSSEC install.
+
+-------------------------------------------------------------------
+INTERACTION FROM THE COMMAND LINE
+-------------------------------------------------------------------
+
+The following commands are supported:
+
+sign		sign a zone.
+roll		roll keys for a zone.
+
