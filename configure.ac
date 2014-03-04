@@ -267,11 +267,16 @@ AC_CONFIG_FILES([
 	libhsm/checks/conf-opensc.xml
 	libhsm/checks/conf-ncipher.xml
 	libhsm/checks/conf-aepkeyper.xml
+	libutil/Makefile
 	signer/Makefile
 	signer/man/Makefile
 	signer/man/ods-signer.8
 	signer/man/ods-signerd.8
 	signer/src/Makefile
+	signzone/Makefile
+	signzone/man/Makefile
+	signzone/man/ods-signzone.8
+	signzone/src/Makefile
 	tools/Makefile
 	tools/ods-control
 	tools/solaris/Makefile

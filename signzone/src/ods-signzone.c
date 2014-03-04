@@ -30,6 +30,7 @@
  */
 
 #include "config.h"
+#include "strfunc.h"
 
 #include <getopt.h>
 #include <stdio.h>
@@ -93,9 +94,12 @@ int
 main(int argc, char* argv[])
 {
     int c;
+    int ret = 0;
     int options_index = 0;
     int cmdline_verbosity = 0;
     const char* kaspfile = NULL;
+    const char* command = NULL;
+    const char* zone = NULL;
     static struct option long_options[] = {
         {"kasp", required_argument, 0, 'k'},
         {"help", no_argument, 0, 'h'},
@@ -134,10 +138,18 @@ main(int argc, char* argv[])
         usage(stderr);
         exit(2);
     }
+    command = argv[0];
+    zone = argv[1];
 
     /* main stuff */
     fprintf(stdout, "OpenDNSSEC signzone version %s\n", PACKAGE_VERSION);
 
+    if (!ods_strcmp(command, ODS_SIGNZONE_COMMAND_SETUP)) {
+        fprintf(stdout, "Setup zone %s\n", zone);
+    } else {
+        fprintf(stderr, "Unknown command for zone %s\n", zone);
+        ret = 1;
+    }
     /* done */
-    return 0;
+    return ret;
 }
