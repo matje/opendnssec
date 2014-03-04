@@ -16,7 +16,7 @@ AM_CPPFLAGS = \
 
 signzonedir =     @libdir@/opendnssec/signzone
 
-sbin_PROGRAMS = ods-signzone
+bin_PROGRAMS = ods-signzone
 # man8_MANS =     man/ods-signzone.8
 
 ods_signzone_SOURCES=		ods-signzone.c
