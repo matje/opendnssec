@@ -151,7 +151,7 @@ main(int argc, char* argv[])
     } else if (!ods_strcmp(command, ODS_SIGNZONE_COMMAND_ROLL)) {
         fprintf(stdout, "Roll keys for zone %s\n", zone);
     } else {
-        fprintf(stderr, "Unknown command for zone %s\n", zone);
+        fprintf(stderr, "Unknown command %s for zone %s\n", command, zone);
         ret = 1;
     }
     /* done */
