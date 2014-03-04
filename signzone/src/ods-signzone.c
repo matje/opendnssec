@@ -40,7 +40,6 @@
 #define AUTHOR_NAME "Matthijs Mekking"
 #define COPYRIGHT_STR "Copyright (C) 2014 NLnet Labs OpenDNSSEC"
 
-#define ODS_SIGNZONE_COMMAND_SETUP "setup"
 #define ODS_SIGNZONE_COMMAND_SIGN  "sign"
 #define ODS_SIGNZONE_COMMAND_ROLL  "roll"
 
@@ -54,8 +53,7 @@ usage(FILE* out)
     fprintf(out, "Usage: %s [OPTIONS] command zone\n", "ods-signzone");
     fprintf(out, "Sign a zone.\n\n");
     fprintf(out, "Supported commands:\n");
-    fprintf(out, " %s | %s | %s\n\n",
-        ODS_SIGNZONE_COMMAND_SETUP,
+    fprintf(out, " %s | %s\n\n",
         ODS_SIGNZONE_COMMAND_SIGN,
         ODS_SIGNZONE_COMMAND_ROLL);
 
@@ -144,9 +142,7 @@ main(int argc, char* argv[])
     /* main stuff */
     fprintf(stdout, "OpenDNSSEC signzone version %s\n", PACKAGE_VERSION);
 
-    if (!ods_strcmp(command, ODS_SIGNZONE_COMMAND_SETUP)) {
-        fprintf(stdout, "Setup zone %s\n", zone);
-    } else if (!ods_strcmp(command, ODS_SIGNZONE_COMMAND_SIGN)) {
+    if (!ods_strcmp(command, ODS_SIGNZONE_COMMAND_SIGN)) {
         fprintf(stdout, "Sign zone %s\n", zone);
     } else if (!ods_strcmp(command, ODS_SIGNZONE_COMMAND_ROLL)) {
         fprintf(stdout, "Roll keys for zone %s\n", zone);
